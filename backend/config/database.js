@@ -1,5 +1,6 @@
 const path = require('path');
 const dotenv = require('dotenv');
+const config = require('./index');
 
 const db = config.db;
 const username = db.username;
