@@ -1,10 +1,13 @@
-const config = require('./index');
+const path = require('path');
+const dotenv = require('dotenv');
 
 const db = config.db;
 const username = db.username;
 const password = db.password;
 const database = db.database;
 const host = db.host;
+
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 module.exports = {
     development: {
