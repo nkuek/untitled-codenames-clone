@@ -1,12 +1,10 @@
 import  Word from '#root/db/models';
-import {Sequelize} from 'sequelize-typescript'
+import {Sequelize} from 'sequelize'
 
 
 const smallWordListResolver = () => {
     return Word.findAll({
-        order: [
-            Sequelize.fn('RAND')
-        ],
+        order: 'random()',
         limit: 16
     })
 }

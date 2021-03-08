@@ -1,5 +1,5 @@
 import Word from '#root/db/models'
-import {Sequelize} from 'sequelize-typescript'
+import {Sequelize} from 'sequelize'
 
 const largeWordListResolver = () => {
     return Word.findAll({

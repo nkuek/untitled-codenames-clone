@@ -1,12 +1,10 @@
 import  Word  from '#root/db/models';
-import {Sequelize} from 'sequelize-typescript'
+import {Sequelize} from 'sequelize'
 
 
 const medWordListResolver = () => {
     return Word.findAll({
-        order: [
-            Sequelize.fn('RAND')
-        ],
+        order: [Sequelize.fn('RANDOM')],
         limit: 20
     })
 }

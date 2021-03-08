@@ -22,6 +22,10 @@ module.exports.up = (queryInterface, DataTypes) => {
             type: DataTypes.DATE,
             defaultValue: Sequelize.fn('now'),
         },
+        deletedAt: {
+            allowNull: true,
+            type: DataTypes.DATE,
+        },
     });
 };
 
