@@ -10,7 +10,7 @@
     "sequelize": "sequelize",
     "sequelize-cli": "sequelize-cli",
     "start": "per-env",
-    "start:development": "nodemon -r ./src/index.ts",
+    "start:development": "ts-node-dev -r ./src/index.ts",
     "start:production": "node app.ts",
     "watch": "ts-node-dev --respawn index.dev.ts",
     "db:migrate": "sequelize db:migrate",
