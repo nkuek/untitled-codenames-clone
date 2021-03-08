@@ -8,9 +8,10 @@ import reportWebVitals from './reportWebVitals';
 
 import graphqlClient from './api/graphql'
 
+// ApolloProvider wraps our app so we have access to the graphql state
+
 const Root = () => {
     return (
-
       <ApolloProvider client={graphqlClient}>
          <App />
       </ApolloProvider>

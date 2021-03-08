@@ -18,15 +18,16 @@ const query = gql`
 
 const Testing = () => {
     const {data, loading} = useQuery<QueryData>(query)
-    const words = (data?.smallWordList)
-    console.log(words)
+    const results = (data?.smallWordList)
+    const words = results?.map(result => result.word)
+
     return (
         loading ? <h1>Loading...</h1> :
         <>
             <h1>Testing</h1>
             <div>
                 {words?.map((word, idx) => (
-                    <li key={idx}>{word.word}</li>
+                    <li key={idx}>{word}</li>
                 ))}
             </div>
         </>
