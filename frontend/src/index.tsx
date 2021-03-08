@@ -1,12 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {ApolloProvider} from '@apollo/client'
+
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import graphqlClient from './api/graphql'
+
+const Root = () => {
+    return (
+
+      <ApolloProvider client={graphqlClient}>
+         <App />
+      </ApolloProvider>
+    )
+}
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
+    <React.StrictMode>
+        <Root />
   </React.StrictMode>,
   document.getElementById('root')
 );
