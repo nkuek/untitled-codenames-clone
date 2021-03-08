@@ -4,7 +4,7 @@ import {Sequelize} from 'sequelize'
 
 const smallWordListResolver = () => {
     return Word.findAll({
-        order: 'random()',
+        order: [Sequelize.fn('RANDOM')],
         limit: 16
     })
 }
