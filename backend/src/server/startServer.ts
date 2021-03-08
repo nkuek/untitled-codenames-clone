@@ -1,10 +1,10 @@
 import {ApolloServer} from 'apollo-server-express'
-import cors from 'cors'
-import express from 'express';
+import * as cors from 'cors'
+import * as express from 'express';
 
-import accessEnv from '#root/helpers/accessEnv'
-import resolvers from '#root/graphql/resolvers'
-import typeDefs from '#root/graphql/typeDefs'
+import accessEnv from '../../src/helpers/accessEnv'
+import resolvers from '../graphql/resolvers'
+import typeDefs from '../graphql/typeDefs'
 
 const PORT = accessEnv("PORT", 7000);
 

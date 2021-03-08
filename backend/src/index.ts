@@ -1,3 +1,3 @@
 import "dotenv/config"
-import "./helpers/accessEnv"
+import "#root/db/connection"
 import "#root/server/startServer"

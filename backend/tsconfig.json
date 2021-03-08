@@ -1,18 +1,17 @@
 {
     "compilerOptions": {
         "allowJs": true,
-        "target": "es6",
+        "baseUrl": ".",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
         "module": "commonjs",
         "moduleResolution": "node",
         "paths": {
             "#root/*": ["./src/*"]
         },
-        "rootDir": "./",
-        "outDir": "./build",
-        "esModuleInterop": true,
         "strict": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
+        "target": "es6",
         "types": ["node"]
+
     }
   }

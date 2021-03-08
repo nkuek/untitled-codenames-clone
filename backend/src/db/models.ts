@@ -1,27 +1,25 @@
-import {Column, DataType, Model, Table} from 'sequelize-typescript'
+import { Column, DataType, Model, Table } from 'sequelize-typescript';
 
-@Table ({
+@Table({
     defaultScope: {
         attributes: {exclude: ["deletedAt"]}
     },
     paranoid: true,
-    tableName: 'Words'
+    tableName: "Words"
 })
-
-export class Word extends Model<Word> {
+class Word extends Model<Word> {
     @Column({
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataType.INTEGER
     })
-    id!: string;
-
+    id!: string
     @Column({
         allowNull: false,
         type: DataType.STRING
     })
-    word!: string;
+    word!: string
 }
 
-export default [Word]
+export default Word
