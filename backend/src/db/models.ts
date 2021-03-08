@@ -1,5 +1,6 @@
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
 
+// Creation of word model
 @Table({
     defaultScope: {
         attributes: {exclude: ["deletedAt"]}

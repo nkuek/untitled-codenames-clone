@@ -1,3 +1,4 @@
+// Verifies that the variable is in the .env file
 const cache: { [key: string]: any } = {}
 
 const accessEnv = (key: string, defaultValue?: any) => {
