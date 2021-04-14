@@ -3,24 +3,24 @@ import { Column, DataType, Model, Table } from 'sequelize-typescript';
 // Creation of word model
 @Table({
     defaultScope: {
-        attributes: {exclude: ["deletedAt"]}
+        attributes: { exclude: ['deletedAt'] },
     },
     paranoid: true,
-    tableName: "Words"
+    tableName: 'Words',
 })
 class Word extends Model<Word> {
     @Column({
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: DataType.INTEGER
+        type: DataType.INTEGER,
     })
-    id!: string
+    id!: number;
     @Column({
         allowNull: false,
-        type: DataType.STRING
+        type: DataType.STRING,
     })
-    word!: string
+    word!: string;
 }
 
-export default Word
+export default Word;

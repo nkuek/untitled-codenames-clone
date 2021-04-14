@@ -4,9 +4,9 @@ import Testing from './components/Testing';
 import {Route, Switch} from 'react-router-dom'
 import SplashPage from './components/Splash'
 import CreateRoom from './components/CreateRoom';
-import JoinRoom from './components/JoinRoom';
 
 import './App.css';
+import GameRoom from './components/GameRoom';
 
 const socket = io('localhost:7000')
 
@@ -24,7 +24,7 @@ function App() {
                 <CreateRoom socket={socket}/>
             </Route>
             <Route exact path='/room/:roomName'>
-                <JoinRoom />
+                <GameRoom />
             </Route>
             <Route>
                 Page not found

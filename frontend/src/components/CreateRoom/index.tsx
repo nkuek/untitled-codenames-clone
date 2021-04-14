@@ -1,12 +1,13 @@
-import React, {FC, useEffect, useState} from 'react';
-import {Socket} from 'socket.io-client'
-import {useQuery} from '@apollo/client'
-import gql from 'graphql-tag'
+import React, { FC, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Socket } from 'socket.io-client';
+import { useQuery } from '@apollo/client';
+import gql from 'graphql-tag';
 
 import './CreateRoom.css';
 
 interface Props {
-    socket: typeof Socket
+    socket: typeof Socket;
 }
 
 interface Word {
@@ -17,28 +18,45 @@ interface QueryData {
     smallWordList: Word[];
 }
 
-const query = gql `
+const query = gql`
     {
         smallWordList {
             word
         }
     }
-`
+`;
 
-const CreateRoom: FC<Props> = ({socket}) => {
-    const [nickname, setNickname] = useState('')
-    const {data} = useQuery<QueryData>(query)
+const CreateRoom: FC<Props> = ({ socket }) => {
+    const [nickname, setNickname] = useState('');
+    const [errors, setErrors] = useState<string[]>([]);
+    const { data } = useQuery<QueryData>(query);
+
+    const history = useHistory();
 
     const randomNameGenerator = () => {
-        const results = data?.smallWordList
-        const urlString = results?.map(result => result.word.toLowerCase()).slice(0, 3).join('-')
-        return urlString
-    }
+        const results = data?.smallWordList;
+        const urlString = results
+            ?.map((result) => result.word.toLowerCase())
+            .slice(0, 3)
+            .join('-');
+        return urlString;
+    };
 
-    const handleNewRoomSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+    const handleNewRoomSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        const errors = [];
         e.preventDefault();
-        const urlString = randomNameGenerator()
-        socket.emit('create room', {nickname, room: urlString})
+        if (!nickname) {
+            errors.push('Please enter a nick name!');
+            setErrors(errors);
+            return;
+        }
+        const urlString = randomNameGenerator();
+        localStorage.setItem(
+            'gameSession',
+            JSON.stringify({ host: nickname, roomName: urlString })
+        );
+        socket.emit('create room', { nickname, room: urlString });
+        history.push(`/room/${urlString}`);
     };
     return (
         <div className="create-room-wrapper">
@@ -46,12 +64,20 @@ const CreateRoom: FC<Props> = ({socket}) => {
                 <div className="create-room-header">
                     <h1>Welcome to Codenames!</h1>
                 </div>
+                {errors.length > 0 &&
+                    errors.map((error: string, idx: number) => (
+                        <div key={idx}>{error}</div>
+                    ))}
                 <form
                     onSubmit={handleNewRoomSubmit}
                     className="create-room-form"
                 >
                     <div>To create a new room, first enter a nickname</div>
-                    <input onChange={e => setNickname(e.target.value)} placeholder="Enter your nickname"></input>
+                    <input
+                        required
+                        onChange={(e) => setNickname(e.target.value)}
+                        placeholder="Enter your nickname"
+                    ></input>
                     <button>Create Room</button>
                 </form>
             </div>
