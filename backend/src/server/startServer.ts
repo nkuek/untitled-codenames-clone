@@ -1,6 +1,7 @@
 import {ApolloServer} from 'apollo-server-express'
 import * as cors from 'cors'
 import * as express from 'express';
+import io from '../../websockets'
 
 import accessEnv from '../../src/helpers/accessEnv'
 import resolvers from '../graphql/resolvers'
@@ -32,6 +33,8 @@ app.use(
 apolloServer.applyMiddleware({app, path: "/graphql"})
 
 // Create express server
-app.listen(PORT, "0.0.0.0", () => {
+const http = app.listen(PORT, "0.0.0.0", () => {
     console.info(`codenames-db listening on port ${PORT}`)
 })
+
+io.attach(http)

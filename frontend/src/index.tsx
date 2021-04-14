@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {ApolloProvider} from '@apollo/client'
+import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
 import App from './App';
@@ -13,7 +14,9 @@ import graphqlClient from './api/graphql'
 const Root = () => {
     return (
       <ApolloProvider client={graphqlClient}>
-         <App />
+          <BrowserRouter>
+            <App />
+         </BrowserRouter>
       </ApolloProvider>
     )
 }

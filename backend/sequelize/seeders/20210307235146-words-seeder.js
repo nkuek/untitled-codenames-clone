@@ -15,7 +15,7 @@ module.exports = {
             { word: 'Ankle' },
             { word: 'Apathy' },
             { word: 'Applause' },
-            { word: 'Applesauc' },
+            { word: 'Applesauce' },
             { word: 'Application' },
             { word: 'Archaeologist' },
             { word: 'Aristocrat' },
