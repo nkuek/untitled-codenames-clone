@@ -1,12 +1,9 @@
-import { useState } from 'react';
-import CreateRoom from '../CreateRoom';
-
+import { useHistory } from 'react-router-dom';
 import './SplashPage.css';
 const SplashPage = () => {
-    const [showModal, setShowModal] = useState(false);
-
-    const handleOpenModal = () => {
-        setShowModal(true);
+    const history = useHistory();
+    const handleCreateRoom = () => {
+        history.push('/room/create');
     };
     return (
         <>
@@ -16,7 +13,7 @@ const SplashPage = () => {
                     <div>Play with your friends</div>
                 </div>
                 <div className="splash-page-create-room-container">
-                    <div onClick={handleOpenModal}>Create Room</div>
+                    <div onClick={handleCreateRoom}>Create Room</div>
                 </div>
                 <div className="splash-page-how-to-play-container">
                     <div className="how-to-play">
@@ -31,7 +28,6 @@ const SplashPage = () => {
                     </div>
                 </div>
             </div>
-            <CreateRoom showModal={showModal} setShowModal={setShowModal} />
         </>
     );
 };
